@@ -1,0 +1,186 @@
+[gd_scene format=3 uid="uid://d05i2at08s75e"]
+
+[ext_resource type="Script" uid="uid://cycxwn0hqmyp7" path="res://scripts/skele_bro.gd" id="1_kd6av"]
+[ext_resource type="Script" uid="uid://bicwkb3316lbl" path="res://scripts/state_machine.gd" id="2_sqjwu"]
+[ext_resource type="Texture2D" uid="uid://cr3yowryc4nja" path="res://assets/SkeleBroSpriteSheet1.png" id="2_vrkn5"]
+[ext_resource type="Script" uid="uid://ctemuy3bpy57v" path="res://scripts/player_run.gd" id="3_qebcv"]
+[ext_resource type="PackedScene" uid="uid://dnewemypdgtmt" path="res://scenes/interactable_component.tscn" id="6_2navv"]
+[ext_resource type="Script" uid="uid://cujwclmgny5sf" path="res://scripts/player_idle.gd" id="6_4v105"]
+[ext_resource type="Script" uid="uid://dychev37cola0" path="res://scripts/player_attack.gd" id="6_ovt61"]
+[ext_resource type="PackedScene" uid="uid://cw2xu0psddadr" path="res://scenes/attack_component.tscn" id="7_sylkc"]
+[ext_resource type="Texture2D" uid="uid://bkakoalgk6dg6" path="res://assets/AttackSpriteSheet.png" id="8_ob4t5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovt61"]
+atlas = ExtResource("2_vrkn5")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aq8hh"]
+atlas = ExtResource("2_vrkn5")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sx8c"]
+atlas = ExtResource("2_vrkn5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v105"]
+atlas = ExtResource("2_vrkn5")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nk4u3"]
+atlas = ExtResource("2_vrkn5")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_th7rm"]
+atlas = ExtResource("2_vrkn5")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qebcv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovt61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aq8hh")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sx8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v105")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nk4u3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_th7rm")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vrkn5"]
+radius = 5.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ovt61"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1dv0"]
+atlas = ExtResource("8_ob4t5")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2hj5"]
+atlas = ExtResource("8_ob4t5")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdvse"]
+atlas = ExtResource("8_ob4t5")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bb7pt"]
+atlas = ExtResource("8_ob4t5")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kreil"]
+atlas = ExtResource("8_ob4t5")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hce1y"]
+atlas = ExtResource("8_ob4t5")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aq8hh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1dv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2hj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdvse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bb7pt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kreil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hce1y")
+}],
+"loop": false,
+"name": &"Swing",
+"speed": 12.0
+}]
+
+[node name="SkeleBro" type="CharacterBody2D" unique_id=740754845]
+collision_mask = 2
+script = ExtResource("1_kd6av")
+
+[node name="SkeleBroAnimations" type="AnimatedSprite2D" parent="." unique_id=1889547209]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_qebcv")
+animation = &"Attack"
+frame = 1
+frame_progress = 1.0
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=745674865]
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_vrkn5")
+
+[node name="StateMachine" type="Node" parent="." unique_id=858987944 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_sqjwu")
+initial_state = NodePath("Idle")
+
+[node name="Run" type="Node" parent="StateMachine" unique_id=1941538038 node_paths=PackedStringArray("player", "sprite")]
+script = ExtResource("3_qebcv")
+speed = 70.0
+player = NodePath("../..")
+sprite = NodePath("../../SkeleBroAnimations")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=799042621 node_paths=PackedStringArray("player", "sprite")]
+script = ExtResource("6_4v105")
+player = NodePath("../..")
+sprite = NodePath("../../SkeleBroAnimations")
+
+[node name="Attack" type="Node" parent="StateMachine" unique_id=146748913 node_paths=PackedStringArray("player", "sprite")]
+script = ExtResource("6_ovt61")
+attack_distance = 16.0
+modified_speed = 50.0
+player = NodePath("../..")
+sprite = NodePath("../../SkeleBroAnimations")
+
+[node name="InteractableComponent" parent="." unique_id=1224531694 instance=ExtResource("6_2navv")]
+position = Vector2(0, -8)
+
+[node name="AttackComponent" parent="." unique_id=900859604 node_paths=PackedStringArray("sprite", "area_of_effect") instance=ExtResource("7_sylkc")]
+position = Vector2(16, -7)
+sprite = NodePath("AttackAnimation")
+area_of_effect = NodePath("AttackArea2D")
+
+[node name="AttackArea2D" type="Area2D" parent="AttackComponent" unique_id=1042330725]
+
+[node name="AttackHitbox" type="CollisionShape2D" parent="AttackComponent/AttackArea2D" unique_id=1214300997]
+shape = SubResource("CapsuleShape2D_ovt61")
+debug_color = Color(0.9959039, 0, 0.20515925, 0.41960785)
+
+[node name="AttackAnimation" type="AnimatedSprite2D" parent="AttackComponent" unique_id=159026633]
+sprite_frames = SubResource("SpriteFrames_aq8hh")
+animation = &"Swing"
+frame = 5
+frame_progress = 1.0
