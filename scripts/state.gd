@@ -1,3 +1,4 @@
+@abstract
 extends Node
 class_name State
 ##A state that the player or an entity can be in

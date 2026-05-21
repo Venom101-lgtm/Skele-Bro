@@ -1,3 +1,4 @@
+@abstract
 extends State
 class_name PlayerState
 ##States for the player, holds re-used code
@@ -11,6 +12,8 @@ class_name PlayerState
 
 var direction : Vector2
 #Direction of player
+var currently_moving := false
+#Tracks if the player is currently moving or not
 
 ##Finds the direction of the player based on keyboard input
 func determine_direction() -> void:
@@ -40,9 +43,27 @@ func determine_mouse_direction() -> Vector2:
 	
 	return mouse_position.normalized()
 	
-##Returns true if there is input to move
-func is_moving_input() -> bool:
+##Returns true if there has been a change in the player's movement, used for moving manager state
+func has_movement_changed() -> bool:
+	var movement : bool
+	
+	#Checks if character is moving or not
 	if Input.get_vector("MoveLeft","MoveRight","MoveUp","MoveDown") != Vector2(0,0):
+		movement = true
+	else:
+		movement = false
+	
+	#If current motion matches new motion return false
+	if currently_moving == movement:
+		return false
+	else:
+	#Difference in motion update currently moving and return true
+		currently_moving = movement
+		return true
+
+##Returns true if the player is attacking, used for attacking manager state
+func is_attacking() -> bool:
+	if Input.is_action_just_pressed("Slash"):
 		return true
 	else:
 		return false

@@ -8,19 +8,28 @@ var current_state : State
 var states: Dictionary
 #Defines our current state and creates a dictionary to hold all possible states
 
-func _ready() -> void:
-	for child in get_children():
-	#All children of state machine are all of the possible states
-		if child is State:
-			states[child.name.to_lower()] = child #Adds state to state machine
-			child.transition.connect(on_child_transition)
+func add_to_states(children_to_add: Array) -> void:
+	for child_to_add in children_to_add:
+		if child_to_add is State:
+			states[child_to_add.name.to_lower()] = child_to_add #Adds state to state machine
+			child_to_add.transition.connect(on_child_transition)
 			#Connects the function for switching state to the signal for every state
-			
+
+func _ready() -> void:
+	add_to_states(get_children())
+	#Adds the manager states
+	
+	for child in get_children():
+		add_to_states(child.get_children())
+		#Adds the child states that the manager states manage
+	
+	#All children of state machine are all of the possible states
+		
 	if initial_state:
 	#Enters an initial state if one is defined
 		initial_state.enter()
 		current_state = initial_state
-		
+	
 func _process(delta: float) -> void:
 	if current_state:
 	#If the current state exists does process like normal
