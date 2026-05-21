@@ -1,14 +1,13 @@
 [gd_scene format=3 uid="uid://d05i2at08s75e"]
 
-[ext_resource type="Script" uid="uid://cycxwn0hqmyp7" path="res://scripts/player/skele_bro.gd" id="1_kd6av"]
+[ext_resource type="Script" uid="uid://cycxwn0hqmyp7" path="res://scripts/Player/skele_bro.gd" id="1_kd6av"]
 [ext_resource type="Script" uid="uid://bicwkb3316lbl" path="res://scripts/state_machine.gd" id="2_sqjwu"]
 [ext_resource type="Texture2D" uid="uid://cr3yowryc4nja" path="res://assets/SkeleBroSpriteSheet1.png" id="2_vrkn5"]
-[ext_resource type="Script" uid="uid://ctemuy3bpy57v" path="res://scripts/player/player_states/player_run.gd" id="3_qebcv"]
-[ext_resource type="Script" uid="uid://dfio45md0ntmj" path="res://scripts/player/player_states/manager_player_moving.gd" id="4_j1dv0"]
+[ext_resource type="Script" uid="uid://ctemuy3bpy57v" path="res://scripts/Player/player_run.gd" id="3_qebcv"]
+[ext_resource type="Script" uid="uid://dfio45md0ntmj" path="res://scripts/Player/moving.gd" id="4_j1dv0"]
 [ext_resource type="PackedScene" uid="uid://dnewemypdgtmt" path="res://scenes/interactable_component.tscn" id="6_2navv"]
-[ext_resource type="Script" uid="uid://cujwclmgny5sf" path="res://scripts/player/player_states/player_idle.gd" id="6_4v105"]
-[ext_resource type="Script" uid="uid://dychev37cola0" path="res://scripts/player/player_states/player_slash.gd" id="6_ovt61"]
-[ext_resource type="Script" uid="uid://b5w8kw1cc1ixr" path="res://scripts/player/player_states/manager_player_attacking.gd" id="7_q2hj5"]
+[ext_resource type="Script" uid="uid://cujwclmgny5sf" path="res://scripts/Player/player_idle.gd" id="6_4v105"]
+[ext_resource type="Script" uid="uid://dychev37cola0" path="res://scripts/Player/player_attack.gd" id="6_ovt61"]
 [ext_resource type="PackedScene" uid="uid://cw2xu0psddadr" path="res://scenes/attack_component.tscn" id="7_sylkc"]
 [ext_resource type="Texture2D" uid="uid://bkakoalgk6dg6" path="res://assets/AttackSpriteSheet.png" id="8_ob4t5"]
 
@@ -164,7 +163,6 @@ player = NodePath("../../..")
 sprite = NodePath("../../../SkeleBroAnimations")
 
 [node name="Attacking" type="Node" parent="StateMachine" unique_id=1836993212]
-script = ExtResource("7_q2hj5")
 
 [node name="Slash" type="Node" parent="StateMachine/Attacking" unique_id=146748913 node_paths=PackedStringArray("player", "sprite")]
 script = ExtResource("6_ovt61")

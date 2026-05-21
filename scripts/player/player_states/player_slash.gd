@@ -3,8 +3,8 @@ extends PlayerState
 @export var attack_distance : float
 @export var modified_speed : float
 
-@onready var attack_component: Node2D = $"../../AttackComponent"
-@onready var attack_animation: AnimatedSprite2D = $"../../AttackComponent/AttackAnimation"
+@onready var attack_component: AttackComponent = %AttackComponent
+@onready var attack_animation: AnimatedSprite2D = %AttackAnimation
 
 func enter():
 	flip_character_mouse()
@@ -24,11 +24,8 @@ func enter():
 	sprite.play("Attack")
 	attack_component.do_attack("Swing")
 	await attack_animation.animation_finished
-	if is_moving_input():
-		transition.emit(self, "Run")
-	else:
-		transition.emit(self,"Idle")
-	#Does the attack and goes back to idle or run
+	
+	transition.emit(self,"Moving")
 
 func state_physics_process(_state_delta: float) -> void:
 	determine_direction()
