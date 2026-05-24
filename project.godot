@@ -71,9 +71,11 @@ Slash={
 
 [layer_names]
 
-2d_physics/layer_1="Player"
+2d_physics/layer_1="Entity"
 2d_physics/layer_2="StaticObjects"
 2d_physics/layer_3="Interactions"
+2d_physics/layer_4="Player"
+2d_physics/layer_5="Enemy"
 
 [physics]
 

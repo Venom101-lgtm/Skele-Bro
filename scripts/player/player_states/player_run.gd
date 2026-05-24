@@ -5,7 +5,7 @@ extends PlayerState
 
 func enter():
 	currently_moving = true
-	sprite.play("Run")
+	movement_animations.play("Run")
 
 func state_process(_state_delta: float) -> void:
 	determine_direction()

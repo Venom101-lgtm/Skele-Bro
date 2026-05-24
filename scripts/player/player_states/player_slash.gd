@@ -3,8 +3,8 @@ extends PlayerState
 @export var attack_distance : float
 @export var modified_speed : float
 
-@onready var attack_component: AttackComponent = %AttackComponent
-@onready var attack_animation: AnimatedSprite2D = %AttackAnimation
+@onready var attack_component: AttackComponent = $"../../../AttackComponent"
+@onready var slash_sprite: Sprite2D = $"../../../AttackComponent/SlashSprite"
 
 func enter():
 	flip_character_mouse()
@@ -12,18 +12,18 @@ func enter():
 	
 	var mouse = determine_mouse_direction()
 	if mouse.x < 0:
-		attack_animation.flip_v = true
+		slash_sprite.flip_v = true
 	else:
-		attack_animation.flip_v = false
+		slash_sprite.flip_v = false
 	
 	attack_component.rotation = mouse.angle()
-	attack_component.position = attack_distance * mouse + Vector2(0,-8)
+	attack_component.position = attack_distance * mouse + Vector2(0,-7)
 	#Accounts for player offset
 	#All of this just positions the attack properly
 	
-	sprite.play("Attack")
-	attack_component.do_attack("Swing")
-	await attack_animation.animation_finished
+	movement_animations.stop()
+	attack_animations.play("Slash")
+	await attack_animations.animation_finished
 	
 	transition.emit(self,"Moving")
 

@@ -5,8 +5,12 @@ class_name PlayerState
 
 @export var player : CharacterBody2D
 #This is here so states can access the player
-@export var sprite : AnimatedSprite2D
+
+@onready var attack_animations: AnimationPlayer = %AttackAnimations
+@onready var movement_animations: AnimationPlayer = %MovementAnimations
+@onready var sprite: Sprite2D = %SkeleBroSprite
 #This is here so the states can acces the sprite/animations
+
 @export var friction := 0.4
 #How much the player slides when stop moving, used in lerp
 

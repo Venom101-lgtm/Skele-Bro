@@ -2,7 +2,7 @@ extends PlayerState
 
 func enter():
 	currently_moving = false
-	sprite.play("Idle")
+	movement_animations.play("Idle")
 	
 func state_process(_state_delta: float) -> void:
 	flip_character_mouse()
