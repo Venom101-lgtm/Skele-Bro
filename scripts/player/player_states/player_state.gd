@@ -30,10 +30,9 @@ func flip_character_mouse() -> void:
 
 ##Flips the character to face the way they're moving
 func flip_character_input() -> void:
-	if player.velocity.x < 0:
+	if Input.get_axis("MoveLeft","MoveRight") < 0:
 		sprite.flip_h = true
-	else: if player.velocity.x > 0:
-	#Additional if statement prevents flipping when crashing into walls while still running
+	else:
 		sprite.flip_h = false
 
 ##Finds where the mouse is relative to the player returns a normalized vector
