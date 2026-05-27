@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://cq8fj8cy8adn1"]
-
-[ext_resource type="Script" uid="uid://daksl1maw4lf5" path="res://scripts/attack_component.gd" id="1_0rji1"]
-
-[node name="AttackComponent" type="Area2D" unique_id=55333489]
-script = ExtResource("1_0rji1")
-attack_damage = null

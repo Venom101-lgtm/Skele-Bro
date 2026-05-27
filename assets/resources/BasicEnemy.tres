@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://c8kenel758h18"]
+
+[ext_resource type="Script" uid="uid://dvxivg7x5hmgx" path="res://scripts/resources/enemy_stats.gd" id="1_qlhbb"]
+
+[resource]
+script = ExtResource("1_qlhbb")
+max_health = 3
+damage = 1
+max_speed = 40.0
+friction = 0.4
+wander_speed = 20.0
+wander_min_wait_time = 3.0
+wander_max_wait_time = 6.0
+metadata/_custom_type_script = "uid://dvxivg7x5hmgx"

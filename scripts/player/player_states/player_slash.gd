@@ -3,8 +3,8 @@ extends PlayerState
 @export var attack_distance : float
 @export var modified_speed : float
 
-@onready var attack_component: AttackComponent = $"../../../AttackComponent"
-@onready var slash_sprite: Sprite2D = $"../../../AttackComponent/SlashSprite"
+@onready var slash_sprite: Sprite2D = $"../../../HitboxComponent/SlashSprite"
+#@onready var hitbox_component: HitboxComponent = $"../../../HitboxComponent"
 
 func enter():
 	flip_character_mouse()
@@ -16,8 +16,9 @@ func enter():
 	else:
 		slash_sprite.flip_v = false
 	
-	attack_component.rotation = mouse.angle()
-	attack_component.position = attack_distance * mouse + Vector2(0,-7)
+	
+	hitbox_component.rotation = mouse.angle()
+	hitbox_component.position = attack_distance * mouse + Vector2(0,-7)
 	#Accounts for player offset
 	#All of this just positions the attack properly
 	

@@ -6,6 +6,8 @@ class_name PlayerState
 @export var player : CharacterBody2D
 #This is here so states can access the player
 
+@onready var hitbox_component: HitboxComponent = %HitboxComponent
+
 @onready var attack_animations: AnimationPlayer = %AttackAnimations
 @onready var movement_animations: AnimationPlayer = %MovementAnimations
 @onready var sprite: Sprite2D = %SkeleBroSprite
